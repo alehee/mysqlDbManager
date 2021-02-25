@@ -25,6 +25,36 @@ namespace mysqlDbManager
 
             // CHECKING CONNECTION TO INITIALIZE THE VARIABLE
             connection.checkConnection(Properties.Settings.Default["dbIP"].ToString(), Properties.Settings.Default["dbUser"].ToString(), Properties.Settings.Default["dbPassword"].ToString(), Properties.Settings.Default["dbName"].ToString());
+
+            this.Title = "Database `" + Properties.Settings.Default["dbName"].ToString() + "` management";
+
+            mainRefresh();
+        }
+
+        /// FUNCTION REFRESHES DATATABLES
+        private void mainRefresh()
+        {
+            /// GET TABLES NAMES
+            List<string> databasesList = connection.getDatabaseTables(Properties.Settings.Default["dbName"].ToString());
+            if (databasesList.Count>0 && databasesList[0] == "!ERR")
+            {
+                Dispatcher.Invoke(new Action(() =>
+                {
+                    TB_Log.Text = "Databases download error! Output: " + databasesList[1];
+                }));
+            }
+            else
+            {
+                foreach(string table in databasesList)
+                {
+                    Dispatcher.Invoke(new Action(() =>
+                    {
+                        CB_Tables.Items.Add(table);
+                    }));
+                }
+                CB_Tables.SelectedIndex = 0;
+            }
+            /// ==========
         }
 
         /// LOGOUT SCRIPT
