@@ -40,3 +40,32 @@ D:\Proj_Programming\CS WPF\mysqlDbManager\mysqlDbManager\bin\Debug\System.Memory
 D:\Proj_Programming\CS WPF\mysqlDbManager\mysqlDbManager\bin\Debug\System.Numerics.Vectors.xml
 D:\Proj_Programming\CS WPF\mysqlDbManager\mysqlDbManager\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\Proj_Programming\CS WPF\mysqlDbManager\mysqlDbManager\obj\Debug\mysqlDbManager.csproj.CopyComplete
+C:\Projects\mysqlDbManager\bin\Debug\mysqlDbManager.exe.config
+C:\Projects\mysqlDbManager\bin\Debug\mysqlDbManager.exe
+C:\Projects\mysqlDbManager\bin\Debug\mysqlDbManager.pdb
+C:\Projects\mysqlDbManager\bin\Debug\System.Buffers.dll
+C:\Projects\mysqlDbManager\bin\Debug\System.Memory.dll
+C:\Projects\mysqlDbManager\bin\Debug\Google.Protobuf.pdb
+C:\Projects\mysqlDbManager\bin\Debug\Google.Protobuf.xml
+C:\Projects\mysqlDbManager\bin\Debug\K4os.Compression.LZ4.xml
+C:\Projects\mysqlDbManager\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Projects\mysqlDbManager\bin\Debug\K4os.Hash.xxHash.xml
+C:\Projects\mysqlDbManager\bin\Debug\MySql.Data.xml
+C:\Projects\mysqlDbManager\bin\Debug\Renci.SshNet.xml
+C:\Projects\mysqlDbManager\bin\Debug\System.Numerics.Vectors.xml
+C:\Projects\mysqlDbManager\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Projects\mysqlDbManager\obj\Debug\mysqlDbManager.csprojAssemblyReference.cache
+C:\Projects\mysqlDbManager\obj\Debug\Main.g.cs
+C:\Projects\mysqlDbManager\obj\Debug\Login.g.cs
+C:\Projects\mysqlDbManager\obj\Debug\App.g.cs
+C:\Projects\mysqlDbManager\obj\Debug\mysqlDbManager_MarkupCompile.cache
+C:\Projects\mysqlDbManager\obj\Debug\mysqlDbManager_MarkupCompile.lref
+C:\Projects\mysqlDbManager\obj\Debug\Main.baml
+C:\Projects\mysqlDbManager\obj\Debug\Login.baml
+C:\Projects\mysqlDbManager\obj\Debug\mysqlDbManager.g.resources
+C:\Projects\mysqlDbManager\obj\Debug\mysqlDbManager.Properties.Resources.resources
+C:\Projects\mysqlDbManager\obj\Debug\mysqlDbManager.csproj.GenerateResource.cache
+C:\Projects\mysqlDbManager\obj\Debug\mysqlDbManager.csproj.CoreCompileInputs.cache
+C:\Projects\mysqlDbManager\obj\Debug\mysqlDbManager.csproj.CopyComplete
+C:\Projects\mysqlDbManager\obj\Debug\mysqlDbManager.exe
+C:\Projects\mysqlDbManager\obj\Debug\mysqlDbManager.pdb

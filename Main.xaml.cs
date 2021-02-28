@@ -34,14 +34,15 @@ namespace mysqlDbManager
         /// FUNCTION REFRESHES DATATABLES
         private void mainRefresh()
         {
+            /// CLEAR DISPLAYED TABLE IF EXISTS
+            clearTable();
+            /// ==========
+
             /// GET TABLES NAMES
             List<string> databasesList = connection.getDatabaseTables(Properties.Settings.Default["dbName"].ToString());
             if (databasesList.Count>0 && databasesList[0] == "!ERR")
             {
-                Dispatcher.Invoke(new Action(() =>
-                {
-                    TB_Log.Text = "Databases download error! Output: " + databasesList[1];
-                }));
+                updateLog("Databases download error! Output: " + databasesList[1]);
             }
             else
             {
@@ -55,14 +56,82 @@ namespace mysqlDbManager
                 CB_Tables.SelectedIndex = 0;
             }
             /// ==========
+
+            /// DISPLAY TABLE CONTENT
+            tableRefresh();
+            /// ==========
+             
+
         }
 
-        /// LOGOUT SCRIPT
+        /// REFRESH TABLE FUNCTION
+        private void tableRefresh()
+        {
+            List<string>[] tableList = connection.getTable(CB_Tables.SelectedItem.ToString());
+            if (tableList[0].Count > 0 && tableList[0][0] == "!ERR")
+            {
+                updateLog("Databases download error! Output: " + tableList[0][1]);
+            }
+            else
+            {
+                updateLog("Succesfully downloaded table `" + CB_Tables.SelectedItem.ToString());
+
+                /*
+                for (int i=0; i<tableList.Length; i++)
+                {
+                    for(int j=0; j<tableList[i].Count; j++)
+                    {
+                        Dispatcher.Invoke(new Action(() =>
+                        {
+                            TB_Log.Text = TB_Log.Text.ToString() + tableList[i][j] + "; ";
+                        }));
+                    }
+                }
+                */
+            }
+        }
+
+        /// CLEARING THE TABLE FROM WINDOW
+        private void clearTable()
+        {
+            G_Table.RowDefinitions.Clear();
+            G_Table.ColumnDefinitions.Clear();
+            G_Table.Children.Clear();
+        }
+        /// ==========
+
+        /// BUTTON HANDLING LOGOUT SCRIPT
         private void B_Logout_Click(object sender, RoutedEventArgs e)
         {
             Login login = new Login();
             login.Show();
             this.Close();
         }
+        /// ==========
+
+        /// BUTTON HANDLING REFERENCE TO REFRESH FUNCTIONS
+        private void B_Refresh_Click(object sender, RoutedEventArgs e)
+        {
+            mainRefresh();
+        }
+        /// ==========
+        
+        /// FUNCTION HANDLES LOG UPDATING/CLEARING
+        private void updateLog(string message="", bool clearLog=true)
+        {
+            if (clearLog)
+            {
+                Dispatcher.Invoke(new Action(() =>
+                {
+                    TB_Log.Text = "";
+                }));
+            }
+
+            Dispatcher.Invoke(new Action(() =>
+            {
+                TB_Log.Text = message + "\n";
+            }));
+        }
+        /// ==========
     }
 }

@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\Proj_Programming\CS WPF\mysqlDbManager\mysqlDbManager\obj\Debug\
+C:\Projects\mysqlDbManager\obj\Debug\
 mysqlDbManager
 none
 false
 DEBUG;TRACE
-D:\Proj_Programming\CS WPF\mysqlDbManager\mysqlDbManager\App.xaml
+C:\Projects\mysqlDbManager\App.xaml
 2-140749113
 
 8-1879407590
-136-1882037706
+136-422833782
 Main.xaml;Login.xaml;
 
 True
