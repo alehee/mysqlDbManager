@@ -12,26 +12,34 @@ namespace mysqlDbManager
     class Connection
     {
         MySqlConnection connection;
+        string databaseName;
+        string primaryKeyColumn;
 
+        /// FUNCTION TO GET CONNECTION AND ALSO CHECK IT
         public bool checkConnection(string dbUrl, string dbUser, string dbPassword, string dbName)
         {
             string connectionString = "server="+dbUrl+";user="+dbUser+";database="+dbName+";port=3306;password="+dbPassword+";";
             try
             {
+                databaseName = dbName;
                 connection = new MySqlConnection(connectionString);
                 connection.Open();
-                connection.Close();
                 return true;
             }
             catch
             {
                 return false;
             }
+            finally
+            {
+                connection.Close();
+            }
         }
+        /// ==========
 
+        /// RETURNS LIST OF TABLES FOR THIS DATABASE
         public List<string> getDatabaseTables(string dbName)
         {
-            // SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA='dbName'
             List<string> returnList = new List<string>();
             string sql = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA='"+ dbName +"'";
             MySqlCommand query = new MySqlCommand(sql, connection);
@@ -61,12 +69,14 @@ namespace mysqlDbManager
             }
             return returnList;
         }
+        /// ==========
 
+        /// RETURNS LIST OF HEADERS FOR THE TABLE
         private List<string> getHeaders(string tableName)
         {
-            // SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'tableName'
             List<string> returnList = new List<string>();
-            string sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '" + tableName + "'";
+            string primaryKey = getPrimaryKey(tableName);
+            string sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA='" + databaseName + "' AND TABLE_NAME = '" + tableName + "'";
             MySqlCommand query = new MySqlCommand(sql, connection);
             query.CommandTimeout = 30;
             try
@@ -78,7 +88,14 @@ namespace mysqlDbManager
                 {
                     while (mySqlDataReader.Read())
                     {
-                        returnList.Add(mySqlDataReader.GetValue(0).ToString());
+                        string headerBuffer = mySqlDataReader.GetValue(0).ToString();
+
+                        if (headerBuffer == primaryKey)
+                        {
+                            headerBuffer = "." + headerBuffer;
+                        }
+
+                        returnList.Add(headerBuffer);
                     }
                 }
             }
@@ -94,7 +111,44 @@ namespace mysqlDbManager
             }
             return returnList;
         }
+        /// ==========
 
+        /// RETURNS STRING NAME OF PRIMARY KEY FOR THE TABLE
+        private string getPrimaryKey(string tableName)
+        {
+            string pri = "";
+            // SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA='test' AND TABLE_NAME='tabela1' AND COLUMN_KEY='PRI'
+            string sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA='" + databaseName + "' AND TABLE_NAME='" + tableName + "' AND COLUMN_KEY='PRI'";
+            MySqlCommand query = new MySqlCommand(sql, connection);
+            query.CommandTimeout = 30;
+            try
+            {
+                connection.Open();
+                MySqlDataReader mySqlDataReader = query.ExecuteReader();
+
+                if (mySqlDataReader.HasRows)
+                {
+                    while (mySqlDataReader.Read())
+                    {
+                        pri = mySqlDataReader.GetValue(0).ToString();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                pri = "!ERR";
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            primaryKeyColumn = pri;
+            return pri;
+        }
+        /// ==========
+
+        /// RETURNS ARRAY OF LISTS OF COLUMNS FOR THE TABLE
         public List<string>[] getTable(string tableName)
         {
             /// RETURN VARIABLES DESCRIPTION
@@ -175,5 +229,83 @@ namespace mysqlDbManager
             }
             return returnList;
         }
+        /// ==========
+        
+        /// CHANGE CELL VALUE AND RETURN BOOL IF SUCCESSFUL
+        public bool changeCell(string tableName, string columnValue, string columnName, string primaryKeyValue)
+        {
+            bool flag = true;
+            string sql = "UPDATE `"+tableName+"` SET "+columnName+"='"+columnValue+"' WHERE "+primaryKeyColumn+"='"+primaryKeyValue+"'";
+            MySqlCommand query = new MySqlCommand(sql, connection);
+            query.CommandTimeout = 30;
+
+            try
+            {
+                connection.Open();
+                MySqlDataReader mySqlDataReader = query.ExecuteReader();
+            }
+            catch
+            {
+                flag = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return flag;
+        }
+        /// ==========
+
+        /// DELETE ROW FUNCTION AND RETURN BOOL IF SUCCESSFUL
+        public bool deleteRow(string tableName, string primaryKeyValue)
+        {
+            bool flag = true;
+            string sql = "DELETE FROM "+tableName+" WHERE "+primaryKeyColumn+"='"+primaryKeyValue+"'";
+            MySqlCommand query = new MySqlCommand(sql, connection);
+            query.CommandTimeout = 30;
+
+            try
+            {
+                connection.Open();
+                MySqlDataReader mySqlDataReader = query.ExecuteReader();
+            }
+            catch
+            {
+                flag = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return flag;
+        }
+        /// ==========
+
+        /// DELETE ROW FUNCTION AND RETURN BOOL IF SUCCESSFUL
+        public bool customSql(string tableName, string sql)
+        {
+            bool flag = true;
+            MySqlCommand query = new MySqlCommand(sql, connection);
+            query.CommandTimeout = 30;
+
+            try
+            {
+                connection.Open();
+                MySqlDataReader mySqlDataReader = query.ExecuteReader();
+            }
+            catch
+            {
+                flag = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return flag;
+        }
+        /// ==========
     }
 }

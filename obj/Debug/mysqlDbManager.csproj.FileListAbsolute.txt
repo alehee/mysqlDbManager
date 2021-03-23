@@ -69,3 +69,5 @@ C:\Projects\mysqlDbManager\obj\Debug\mysqlDbManager.csproj.CoreCompileInputs.cac
 C:\Projects\mysqlDbManager\obj\Debug\mysqlDbManager.csproj.CopyComplete
 C:\Projects\mysqlDbManager\obj\Debug\mysqlDbManager.exe
 C:\Projects\mysqlDbManager\obj\Debug\mysqlDbManager.pdb
+D:\Proj_Programming\CS WPF\mysqlDbManager\mysqlDbManager\obj\Debug\MagicQuery.g.cs
+D:\Proj_Programming\CS WPF\mysqlDbManager\mysqlDbManager\obj\Debug\MagicQuery.baml

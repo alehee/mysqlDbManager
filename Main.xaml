@@ -5,33 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:mysqlDbManager"
         mc:Ignorable="d"
-        Title="Database `` management" Height="450" Width="800">
+        Title="Database `` management" Height="450" Width="800" Closing="Window_Closing">
     <Grid>
-        <Button x:Name="B_Logout" Content="Logout" Width="100" Height="20" Margin="680,0,0,390" Foreground="Red" Click="B_Logout_Click"/>
-        <Button x:Name="B_Refresh" Content="Refresh" Width="80" Height="20" Margin="480,0,0,390" Click="B_Refresh_Click"/>
-        <ComboBox x:Name="CB_Tables" Width="150" Height="20" Margin="230,0,0,390"/>
+        <Button x:Name="B_Logout" Content="Logout" Width="70" Height="20" Margin="704,0,0,390" Foreground="Red" Click="B_Logout_Click"/>
+        <Button x:Name="B_Refresh" Content="Refresh" Width="70" Height="20" Margin="550,0,0,390" Click="B_Refresh_Click"/>
+        <ComboBox x:Name="CB_Tables" Width="140" Height="20" Margin="329,0,0,390"/>
+        <TextBox x:Name="TB_Query" Width="350" Height="20" Margin="0,0,424,390"/>
+        <Button x:Name="B_Query" Content="Send" Width="50" Height="20" Margin="0,0,15,390" Click="B_Query_Click"/>
+        <Button x:Name="B_MagicQuery" Content="Edit data" Width="55" Height="20" Margin="100,0,0,390" Click="B_MagicQuery_Click"/>
 
-        <Grid x:Name="G_Table" HorizontalAlignment="Left" Height="300" Margin="10,30,0,0" VerticalAlignment="Top" Width="772">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="100" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="200" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-            </Grid.RowDefinitions>
-            <Label Grid.Row="0" Grid.Column="0">Button 1</Label>
-            <Label Grid.Row="0" Grid.Column="1">Button 2</Label>
-            <Label Grid.Row="0" Grid.Column="2">Button 3</Label>
-            <Label Grid.Row="1" Grid.Column="0">Button 4</Label>
-            <Label Grid.Row="1" Grid.Column="1">Button 5</Label>
-            <Label Grid.Row="1" Grid.Column="2">Button 6</Label>
-            <Label Grid.Row="2" Grid.Column="0">Button 7</Label>
-            <Label Grid.Row="2" Grid.Column="1">Button 8</Label>
-            <Label Grid.Row="2" Grid.Column="2">Button 9</Label>
-        </Grid>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="0,0,0,60" Height="300" Width="772">
+            <Grid x:Name="G_Table" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="100" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" FontWeight="Bold">Header 1</Label>
+                <Label Grid.Row="0" Grid.Column="1" FontWeight="Bold">Header 2</Label>
+                <Label Grid.Row="0" Grid.Column="2" FontWeight="Bold">Header 3</Label>
+                <Label Grid.Row="1" Grid.Column="0">Button 4</Label>
+                <Label Grid.Row="1" Grid.Column="1">Button 5</Label>
+                <Label Grid.Row="1" Grid.Column="2">Button 6</Label>
+                <Label Grid.Row="2" Grid.Column="0">Button 7</Label>
+                <Label Grid.Row="2" Grid.Column="1">Button 8</Label>
+                <Label Grid.Row="2" Grid.Column="2">Button 9</Label>
+            </Grid>
+        </ScrollViewer>
+
+        <Label x:Name="L_ChangeCellAlert" Content="To apply changes press enter on Text Box!" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,60" Opacity="0"/>
         <TextBlock x:Name="TB_Log" HorizontalAlignment="Left" Margin="10,335,0,0" Padding="2" TextWrapping="Wrap" Text="Console output" VerticalAlignment="Top" Height="70" Width="500" Background="#FFDEDEDE"/>
+        <Image Source="Cheese Logo.png" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="70,20" Width="50"/>
+        <Label x:Name="L_Version" Content="v. 0.0.0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="20,20"/>
     </Grid>
 </Window>
