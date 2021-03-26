@@ -71,3 +71,10 @@ C:\Projects\mysqlDbManager\obj\Debug\mysqlDbManager.exe
 C:\Projects\mysqlDbManager\obj\Debug\mysqlDbManager.pdb
 D:\Proj_Programming\CS WPF\mysqlDbManager\mysqlDbManager\obj\Debug\MagicQuery.g.cs
 D:\Proj_Programming\CS WPF\mysqlDbManager\mysqlDbManager\obj\Debug\MagicQuery.baml
+D:\Proj_Programming\CS WPF\mysqlDbManager\mysqlDbManager\bin\Debug\Ookii.Dialogs.Wpf.dll
+D:\Proj_Programming\CS WPF\mysqlDbManager\mysqlDbManager\bin\Debug\Ookii.Dialogs.Wpf.pdb
+D:\Proj_Programming\CS WPF\mysqlDbManager\mysqlDbManager\bin\Debug\Ookii.Dialogs.Wpf.xml
+D:\Proj_Programming\CS WPF\mysqlDbManager\mysqlDbManager\bin\Debug\DocumentFormat.OpenXml.dll
+D:\Proj_Programming\CS WPF\mysqlDbManager\mysqlDbManager\bin\Debug\Newtonsoft.Json.dll
+D:\Proj_Programming\CS WPF\mysqlDbManager\mysqlDbManager\bin\Debug\DocumentFormat.OpenXml.xml
+D:\Proj_Programming\CS WPF\mysqlDbManager\mysqlDbManager\bin\Debug\Newtonsoft.Json.xml

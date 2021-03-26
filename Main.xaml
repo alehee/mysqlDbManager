@@ -39,7 +39,11 @@
         </ScrollViewer>
 
         <Label x:Name="L_ChangeCellAlert" Content="To apply changes press enter on Text Box!" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,60" Opacity="0"/>
-        <TextBlock x:Name="TB_Log" HorizontalAlignment="Left" Margin="10,335,0,0" Padding="2" TextWrapping="Wrap" Text="Console output" VerticalAlignment="Top" Height="70" Width="500" Background="#FFDEDEDE"/>
+        <TextBlock x:Name="TB_Log" HorizontalAlignment="Left" Margin="10,335,0,0" Padding="2" TextWrapping="Wrap" Text="Console output" VerticalAlignment="Top" Height="70" Width="400" Background="#FFDEDEDE"/>
+
+        <Button Content="Export .xlsx" Width="70" Height="20" Margin="300,20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="B_ExportExcel"/>
+        <Button Content="Export .json" Width="70" Height="20" Margin="300,50" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="B_ExportJSON"/>
+
         <Image Source="Cheese Logo.png" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="70,20" Width="50"/>
         <Label x:Name="L_Version" Content="v. 0.0.0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="20,20"/>
     </Grid>

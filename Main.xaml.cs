@@ -19,10 +19,12 @@ namespace mysqlDbManager
     {
         Connection connection = new Connection();
         MagicQuery magicQuery = new MagicQuery();
+        Export export = new Export();
+
         List<string>[] tableList;
         string tableName;
         string continuousMessage = "";
-        string VERSION = "1.0.0";
+        string VERSION = "1.1.0";
 
         public Main()
         {
@@ -31,13 +33,19 @@ namespace mysqlDbManager
             // CHECKING CONNECTION TO INITIALIZE THE VARIABLE
             connection.checkConnection(Properties.Settings.Default["dbIP"].ToString(), Properties.Settings.Default["dbUser"].ToString(), Properties.Settings.Default["dbPassword"].ToString(), Properties.Settings.Default["dbName"].ToString());
 
+            // SET THE WINDOW TITLE
             this.Title = "Database `" + Properties.Settings.Default["dbName"].ToString() + "` management";
 
+            // SET VERSION LABEL
             Dispatcher.Invoke(new Action(() =>
             {
                 L_Version.Content = "v. " + VERSION;
             }));
 
+            // SEND WINDOW REFERENCE TO EXPORT CLASS
+            export.setMainWindow(this);
+
+            // FIRST REFRESH
             mainRefresh();
         }
 
@@ -409,8 +417,36 @@ namespace mysqlDbManager
         }
         /// ==========
 
+        /// EXPORT TO JSON FUNCTION REFERENCE
+        private void B_ExportJSON(object sender, RoutedEventArgs e)
+        {
+            if (!export.exportToJSON(tableList, tableName, Properties.Settings.Default["dbName"].ToString()))
+            {
+                updateLog("Table export error! Try again or restart application!");
+            }
+            else
+            {
+                updateLog("Export to JSON completed!");
+            }
+        }
+        /// ==========
+
+        /// EXPORT TO EXCEL FUNCTION REFERENCE
+        private void B_ExportExcel(object sender, RoutedEventArgs e)
+        {
+            if (!export.exportToExcel(tableList, tableName, Properties.Settings.Default["dbName"].ToString()))
+            {
+                updateLog("Table export error! Try again or restart application!");
+            }
+            else
+            {
+                updateLog("Export to Excel completed!");
+            }
+        }
+        /// ==========
+
         /// FUNCTION HANDLES LOG UPDATING/CLEARING
-        private void updateLog(string message="", bool clearLog=true)
+        public void updateLog(string message="", bool clearLog=true)
         {
             if (clearLog)
             {
@@ -433,7 +469,5 @@ namespace mysqlDbManager
             System.Windows.Application.Current.Shutdown();
         }
         /// ==========
-
-
     }
 }
