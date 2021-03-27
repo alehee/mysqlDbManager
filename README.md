@@ -37,7 +37,15 @@ There's two ways: you can download the master branch with code, check how it's w
 **I'm working on it! :)**
 
 ## Changelog
-**I'm working on it! :)**
+Fixes/New functions/Changes in the program
+
+* **1.1.0** - *26.03.2021*
+  * added export to JSON
+	* added export to Excel Spreadsheet
+	* added few more exception handlers
+
+* **1.0.0** - *23.03.2021*
+  * full version released
 
 ## Thank you!
 Thank you for peeking at my project!
