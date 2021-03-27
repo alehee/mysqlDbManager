@@ -41,8 +41,8 @@ Fixes/New functions/Changes in the program
 
 * **1.1.0** - *26.03.2021*
   * added export to JSON
-	* added export to Excel Spreadsheet
-	* added few more exception handlers
+  * added export to Excel Spreadsheet
+  * added few more exception handlers
 
 * **1.0.0** - *23.03.2021*
   * full version released
